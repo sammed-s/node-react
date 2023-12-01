@@ -22,7 +22,7 @@ jobs:
           npm i
           npm run build
       - name: Create Archive
-        run: tar -czvf dist.tar.gz -C dist .
+        run: tar -czvf dist.tar.gz -C ui/dist .
       - name: Deploy to Remote Server
         run: |
           sshpass -p ${{ secrets.REMOTE_SERVER_PASSWORD }} scp -o StrictHostKeyChecking=no dist.tar.gz ${{ secrets.REMOTE_SERVER_USERNAME }}@${{ secrets.REMOTE_SERVER_HOST }}:/var/www/node-react/_work/node-react/node-react
