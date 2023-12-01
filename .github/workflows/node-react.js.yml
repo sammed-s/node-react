@@ -25,4 +25,4 @@ jobs:
         run: tar -czvf dist.tar.gz -C ui/dist .
       - name: Deploy to Remote Server
         run: |
-          sshpass -p ${{ secrets.REMOTE_SERVER_PASSWORD }} scp -o StrictHostKeyChecking=no dist.tar.gz ${{ secrets.REMOTE_SERVER_USERNAME }}@${{ secrets.REMOTE_SERVER_HOST }}:/var/www/node-react/_work/node-react/node-react/
+          sshpass -p ${{ secrets.REMOTE_SERVER_PASSWORD1 }} scp -o StrictHostKeyChecking=no dist.tar.gz ${{ secrets.REMOTE_SERVER_USERNAME1 }}@${{ secrets.REMOTE_SERVER_HOST }}:/var/www/node-react/_work/node-react/node-react
