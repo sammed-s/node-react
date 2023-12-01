@@ -6,7 +6,7 @@ app.use(cors())
 
 app.get("/getdata", (req,res)=> {
     res.status(200).json({
-        message : "data fetced successfully!!!",
+        message : "data fetced successfully!!!!",
         data : [
             {
                 membername : "sammed",
