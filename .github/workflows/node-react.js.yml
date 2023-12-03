@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: ${{matrix.node_version}}
       - run: |
-          cd api
-          npm i
           cd ../ui
           npm i
           npm run build    
