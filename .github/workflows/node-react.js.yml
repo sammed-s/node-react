@@ -9,7 +9,24 @@ jobs:
   build:
     runs-on: self-hosted
 
-    steps:  
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node-React.js ${{matrix.node_version}}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{matrix.node_version}}
+      - run: |
+          cd api
+          npm i
+          cd ../ui
+          npm i
+          npm run build
+      - name: Create Archive
+        run: 
+          tar -czvf dist.tar.gz -C ui/dist .
+          tar -xzf dist.tar.gz
+          rm -r api
+          rm -r ui
       - name: Deploy to Remote Server
         run: |
-          sshpass -p ${{ secrets.REMOTE_SERVER_PASSWORD1 }} scp -r ui/dist/* ${{ secrets.REMOTE_SERVER_USERNAME1 }}@${{ secrets.REMOTE_SERVER_HOST }}:/var/www/node-react/_work/node-react/node-react
+          sshpass -p ${{ secrets.REMOTE_SERVER_PASSWORD1 }} scp -o StrictHostKeyChecking=no dist.tar.gz ${{ secrets.REMOTE_SERVER_USERNAME1 }}@${{ secrets.REMOTE_SERVER_HOST }}:/var/www/node-react/_work/node-react/node-react
