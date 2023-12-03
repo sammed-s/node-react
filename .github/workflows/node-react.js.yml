@@ -21,14 +21,15 @@ jobs:
           cd ../ui
           npm i
           npm run build
+          cp -r dist/ ../
           cd ..
           rm -rf api/
+          rm -rf ui/
           
       - name: Create Archive
         run: 
-          tar -czvf dist.tar.gz -C ui/dist .
-          
-          
+          tar -czvf dist.tar.gz -C dist .
+          tar -xzf dist.tar.gz
       - name: Deploy to Remote Server
         run: |
           sshpass -p ${{ secrets.REMOTE_SERVER_PASSWORD1 }} scp -o StrictHostKeyChecking=no dist.tar.gz ${{ secrets.REMOTE_SERVER_USERNAME1 }}@${{ secrets.REMOTE_SERVER_HOST }}:/var/www/node-react/_work/node-react/node-react
