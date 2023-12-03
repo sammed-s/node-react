@@ -25,7 +25,8 @@ jobs:
           cd ..
           rm -rf api/
           rm -rf ui/
+          rm backup.ci.txt 
 
       - name: Deploy to Remote Server
         run: |
-          sshpass -p ${{ secrets.REMOTE_SERVER_PASSWORD1 }} scp -r dist/* ${{ secrets.REMOTE_SERVER_USERNAME1 }}@${{ secrets.REMOTE_SERVER_HOST }}:/var/www/node-react/_work/node-react/node-react
+          sshpass -p ${{ secrets.REMOTE_SERVER_PASSWORD1 }} scp -r dist ${{ secrets.REMOTE_SERVER_USERNAME1 }}@${{ secrets.REMOTE_SERVER_HOST }}:/var/www/node-react/_work/node-react/node-react
