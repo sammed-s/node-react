@@ -21,13 +21,13 @@ jobs:
           cd ../ui
           npm i
           npm run build
-          cd ..
-          rm -r api
-          rm -r ui
+          
       - name: Create Archive
         run: 
           tar -czvf dist.tar.gz -C ui/dist .
-          tar -xzf dist.tar.gz
+          cd ..
+          rm -r api
+          rm -r ui
           
       - name: Deploy to Remote Server
         run: |
