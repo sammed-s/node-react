@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: ${{matrix.node_version}}
       - run: |
-          cd ../ui
+          cd ui
           npm i
           npm run build    
       - name: Deploy to Remote Server
